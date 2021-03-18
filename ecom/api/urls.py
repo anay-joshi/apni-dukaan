@@ -5,4 +5,5 @@ from .views import home
 urlpatterns = [
 
     path('', home, name='api.home'), # in short it means '' route is handled by home method from views
+    path('category', include('api.category.urls'))
 ]
