@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from rest_framework.permission import AllowAny
+from rest_framework.permissions import AllowAny
 from .serializers import UserSerializer
 from .models import CustomUser
 from django.http import JsonResponse
