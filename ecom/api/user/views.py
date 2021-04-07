@@ -3,8 +3,9 @@ from rest_framework.permissions import AllowAny
 from .serializers import UserSerializer
 from .models import CustomUser
 from django.http import JsonResponse
-from django.contrib.auth import get_user_model, login, logout
+from django.contrib.auth import get_user_model
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import login, logout
 
 import random
 import re
@@ -13,7 +14,7 @@ import re
 def generate_session_token(length=10):
 
     # 1st loop for lower case alpha , 2nd loop = numbers , 3rd loop for genearting 10 digit token
-    return ''.join(random.SystemRandom().choice([chr(i) for i in range(97, 123)] + [str(i) for i in range(10)])for _ in range(length))
+    return ''.join(random.SystemRandom().choice([chr(i) for i in range(97, 123)] + [str(i) for i in range(10)]) for _ in range(length))
 
 
 @csrf_exempt
@@ -21,8 +22,8 @@ def signin(request):
     if not request.method == 'POST':
         return JsonResponse({'error': 'Send a post request with valid parameters'})
 
-    username = request.POST('email')
-    password = request.POST('password')
+    username = request.POST['email']
+    password = request.POST['password']
 
     if not re.match("^ ((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$", username):
         return JsonResponse({'error': 'Enter a valid email'})
@@ -82,6 +83,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         try:
-            return [permission() for permission in self.permission_classes_by_action(self.action)]
+            return [permission() for permission in self.permission_classes_by_action[self.action]]
         except KeyError:
             return [permission() for permission in self.permission_classes]
