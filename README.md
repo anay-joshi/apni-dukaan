@@ -22,4 +22,5 @@ For now I am working on backend using django.
 
 1. FrontEnd: [React](https://reactjs.org/) (Will develop after backend)
 2. BackeEnd: [Django Rest](https://www.django-rest-framework.org/) (Work in progress)
+3. Payment Gateway: [Braintree](https://developers.braintreepayments.com/)
 
