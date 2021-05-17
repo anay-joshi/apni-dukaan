@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import Base from "./Base";
 
 import { getProducts } from "./helper/coreapicalls";
+
+import "../styles.css";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -22,7 +25,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <Base title="Home Page" description="Welcome to Apni Dukan">
       <h1> Home Component </h1>
       <div className="row">
         {products &&
@@ -34,6 +37,6 @@ export default function Home() {
             );
           })}
       </div>
-    </div>
+    </Base>
   );
 }
