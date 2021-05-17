@@ -4,6 +4,7 @@ import Base from "./Base";
 import { getProducts } from "./helper/coreapicalls";
 
 import "../styles.css";
+import Card from "./Card";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -31,8 +32,8 @@ export default function Home() {
         {products &&
           products.map((product, index) => {
             return (
-              <div key={index}>
-                <h1>{product.name}</h1>
+              <div key={index} className="col-4 mb-4">
+                <Card product={product} />
               </div>
             );
           })}
