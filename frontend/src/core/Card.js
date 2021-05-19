@@ -1,10 +1,56 @@
 import React from "react";
 import Imagehelper from "./helper/imagehelper";
+import { Redirect } from "react-router-dom";
+
+const isAuthenticated = true;
 
 const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
   const cartTitle = product ? product.name : "Default Title";
   const cartDescription = product ? product.description : "Default Description";
   const cartPrice = product ? product.price : "Default Price";
+
+  const addToCart = () => {
+    if (isAuthenticated) {
+      console.log("Added to cart");
+    } else {
+      console.log("Login Please!");
+    }
+  };
+
+  const getAredirect = (redirect) => {
+    if (redirect) {
+      return <Redirect to="/cart" />;
+    }
+  };
+
+  const showAddToCart = (addToCart) => {
+    return (
+      addToCart && (
+        <button
+          onClick={addToCart}
+          className="btn btn-block btn-outline-success mt-2 mb-2"
+        >
+          Add to Cart
+        </button>
+      )
+    );
+  };
+
+  const showRemoveFromCart = (removeFromCart) => {
+    return (
+      removeFromCart && (
+        <button
+          onClick={() => {
+            console.log("Product removed from cart");
+          }}
+          className="btn btn-block btn-outline-danger mt-2 mb-2"
+        >
+          Remove from cart
+        </button>
+      )
+    );
+  };
+
   return (
     <div className="card text-white bg-dark border border-info ">
       <div className="card-header lead">{cartTitle}</div>
@@ -15,22 +61,8 @@ const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
         </p>
         <p className="btn btn-success rounded  btn-sm px-4">$ {cartPrice}</p>
         <div className="row">
-          <div className="col-12">
-            <button
-              onClick={() => {}}
-              className="btn btn-block btn-outline-success mt-2 mb-2"
-            >
-              Add to Cart
-            </button>
-          </div>
-          <div className="col-12">
-            <button
-              onClick={() => {}}
-              className="btn btn-block btn-outline-danger mt-2 mb-2"
-            >
-              Remove from cart
-            </button>
-          </div>
+          <div className="col-12">{showAddToCart(addToCart)}</div>
+          <div className="col-12">{showRemoveFromCart(removeFromCart)}</div>
         </div>
       </div>
     </div>
