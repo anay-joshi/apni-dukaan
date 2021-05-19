@@ -2,15 +2,18 @@ import React from "react";
 import Imagehelper from "./helper/imagehelper";
 
 const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
+  const cartTitle = product ? product.name : "Default Title";
+  const cartDescription = product ? product.description : "Default Description";
+  const cartPrice = product ? product.price : "Default Price";
   return (
     <div className="card text-white bg-dark border border-info ">
-      <div className="card-header lead">A photo from pexels</div>
+      <div className="card-header lead">{cartTitle}</div>
       <div className="card-body">
         <Imagehelper product={product} />
         <p className="lead bg-success font-weight-normal text-wrap">
-          this photo looks great
+          {cartDescription}
         </p>
-        <p className="btn btn-success rounded  btn-sm px-4">$ 5</p>
+        <p className="btn btn-success rounded  btn-sm px-4">$ {cartPrice}</p>
         <div className="row">
           <div className="col-12">
             <button
