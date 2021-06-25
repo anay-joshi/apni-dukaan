@@ -9,7 +9,7 @@ So, I started working on an actual problem statement for a local vendor.
 Till now, I have learnt few concepts of django. And so, this project is in development stage.
 
 ## Build status
-For now I am working on backend using django.
+Rest API for handling backend is ready and tested. Currently working on React front end to consume that API.
 <br>
 
 ## Backend Connection using API
@@ -23,4 +23,5 @@ For now I am working on backend using django.
 1. FrontEnd: [React](https://reactjs.org/) (Will develop after backend)
 2. BackeEnd: [Django Rest](https://www.django-rest-framework.org/) (Work in progress)
 3. Payment Gateway: [Braintree](https://developers.braintreepayments.com/)
+4. API Testing: [Postman](https://www.postman.com/)
 
