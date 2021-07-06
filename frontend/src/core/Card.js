@@ -1,16 +1,18 @@
 import React from "react";
 import Imagehelper from "./helper/imagehelper";
 import { Redirect } from "react-router-dom";
+import { addItemToCart, removeItemFromCart } from "./helper/carthelper";
 
 const isAuthenticated = true;
 
-const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
+const Card = ({ product, addtoCart = true, removeFromCart = true }) => {
   const cartTitle = product ? product.name : "Default Title";
   const cartDescription = product ? product.description : "Default Description";
   const cartPrice = product ? product.price : "Default Price";
 
   const addToCart = () => {
     if (isAuthenticated) {
+      addItemToCart(product, () => {});
       console.log("Added to cart");
     } else {
       console.log("Login Please!");
@@ -41,6 +43,7 @@ const Card = ({ product, addtoCart = true, removeFromCart = false }) => {
       removeFromCart && (
         <button
           onClick={() => {
+            removeItemFromCart(product.id);
             console.log("Product removed from cart");
           }}
           className="btn btn-block btn-outline-danger mt-2 mb-2"
