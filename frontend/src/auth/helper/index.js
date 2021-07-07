@@ -16,7 +16,7 @@ export const signup = (user) => {
     .catch((err) => console.log(err));
 };
 
-export const signin = (uesr) => {
+export const signin = (user) => {
   const formdata = new FormData();
 
   for (const name in user) {

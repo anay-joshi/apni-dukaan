@@ -1,14 +1,14 @@
-import React from 'react'
-import { Router, Redirect } from 'react-router-dom';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
 
-import {isAuthenticated} from "./index"
+import { isAuthenticated } from "./index";
 
-const PrivateRoutes = ({ children, ...rest }) => {
-	return (
+const PrivateRoutes = ({ component: Component, ...rest }) => {
+  return (
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated ? (
+        isAuthenticated() ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -21,6 +21,6 @@ const PrivateRoutes = ({ children, ...rest }) => {
       }
     />
   );
-}
+};
 
-export default function PrivateRoutes;
+export default PrivateRoutes;
