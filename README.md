@@ -20,8 +20,8 @@ Rest API for handling backend is ready and tested. Currently working on React fr
 
 ## Tech/framework used:
 
-1. FrontEnd: [React](https://reactjs.org/) (Will develop after backend)
-2. BackeEnd: [Django Rest](https://www.django-rest-framework.org/) (Work in progress)
+1. FrontEnd: [React](https://reactjs.org/) (Under Development)
+2. BackeEnd: [Django Rest](https://www.django-rest-framework.org/) (API is developed & tested)
 3. Payment Gateway: [Braintree](https://developers.braintreepayments.com/)
 4. API Testing: [Postman](https://www.postman.com/)
 
