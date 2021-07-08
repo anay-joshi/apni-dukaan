@@ -46,6 +46,36 @@ const Signup = () => {
       .catch((e) => console.log(e));
   };
 
+  const successMessage = () => {
+    return (
+      <div className="row">
+        <div className="col-md-6 offset-sm-3 text-left">
+          <div
+            className="alert alert-success"
+            style={{ display: success ? "" : "none" }}
+          >
+            New account created successfully. Please Login now.
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const errorMessage = () => {
+    return (
+      <div className="row">
+        <div className="col-md-6 offset-sm-3 text-left">
+          <div
+            className="alert alert-danger"
+            style={{ display: error ? "" : "none" }}
+          >
+            Check out all fields again.
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const signUpForm = () => {
     return (
       <div className="row">
@@ -90,6 +120,8 @@ const Signup = () => {
 
   return (
     <Base title="Sign up Page" description="A signup for apni dukan user">
+      {successMessage()}
+      {errorMessage()}
       {signUpForm()}
       <p className="text-white text-center">{JSON.stringify(values)}</p>
     </Base>
