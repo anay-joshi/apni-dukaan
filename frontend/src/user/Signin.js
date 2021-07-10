@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { authenticate, isAuthenticated, signin } from "../auth/helper";
 
 const Signin = () => {
@@ -21,21 +21,47 @@ const Signin = () => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const onSubmit = (event) => {
+  const onSumit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
     signin({ email, password })
       .then((data) => {
         console.log("DATA", data);
         if (data.token) {
-          let sessionToken = data.token;
-          authenticate(sessionToken, () => {
+          // let sessionToken = data.token;
+          authenticate(data, () => {
             console.log("TOKEN ADDED");
+            setValues({
+              ...values,
+              didRedirect: true,
+            });
+          });
+        } else {
+          setValues({
+            ...values,
+            loading: false,
           });
         }
       })
-      .catch((e) => console.error(e));
+      .catch((e) => console.log(e));
   };
+
+  const performRedirect = () => {
+    if (isAuthenticated()) {
+      return <Redirect to="/" />;
+    }
+  };
+
+  const loadingMessage = () => {
+    return (
+      loading && (
+        <div className="alert alert-info">
+          <h2>Loading....</h2>
+        </div>
+      )
+    );
+  };
+
   const successMessage = () => {
     return (
       <div className="row">
@@ -92,7 +118,7 @@ const Signin = () => {
               />
             </div>
 
-            <button onClick={onSubmit} className="btn btn-success btn-block">
+            <button onClick={onSumit} className="btn btn-success btn-block">
               Submit
             </button>
           </form>
@@ -103,8 +129,10 @@ const Signin = () => {
 
   return (
     <Base title="Welcome to signin page" description="Apni Dukan">
+      {loadingMessage()}
       {signInForm()}
       <p className="text-center">{JSON.stringify(values)}</p>
+      {performRedirect()}
     </Base>
   );
 };
