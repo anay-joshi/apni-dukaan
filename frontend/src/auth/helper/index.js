@@ -16,18 +16,29 @@ export const signup = (user) => {
     .catch((err) => console.log(err));
 };
 
-export const signin = (uesr) => {
-  const formdata = new FormData();
+export const signin = (user) => {
+  const formData = new FormData();
 
   for (const name in user) {
-    formdata.append(name, user[name]);
+    console.log(user[name]);
+    formData.append(name, user[name]);
+  }
+
+  // const {email, password} = user;
+  // const formData = new FormData();
+  // formData.append('email', email);
+  // formData.append('password', password);
+
+  for (var key of formData.keys()) {
+    console.log("MYKEY", key);
   }
 
   return fetch(`${API}user/login/`, {
     method: "POST",
-    body: FormData,
+    body: formData,
   })
     .then((response) => {
+      console.log("SUCCESS", response);
       return response.json();
     })
     .catch((err) => console.log(err));
@@ -41,7 +52,7 @@ export const authenticate = (data, next) => {
 };
 
 export const isAuthenticated = () => {
-  if (typeof window !== undefined) {
+  if (typeof window == undefined) {
     return false;
   }
 
