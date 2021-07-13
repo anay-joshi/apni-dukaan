@@ -26,15 +26,16 @@ export const signin = (user) => {
 
   // const {email, password} = user;
   // const formData = new FormData();
-  // formData.append('email', email);
-  // formData.append('password', password);
+  // formData.append('email', email)
+  // formData.append('password', password)
 
   for (var key of formData.keys()) {
-    console.log("MYKEY", key);
+    console.log("MYKEY: ", key);
   }
 
   return fetch(`${API}user/login/`, {
     method: "POST",
+
     body: formData,
   })
     .then((response) => {
@@ -55,9 +56,9 @@ export const isAuthenticated = () => {
   if (typeof window == undefined) {
     return false;
   }
-
   if (localStorage.getItem("jwt")) {
     return JSON.parse(localStorage.getItem("jwt"));
+    //TODO: compare JWT with database json token
   } else {
     return false;
   }
@@ -65,6 +66,8 @@ export const isAuthenticated = () => {
 
 export const signout = (next) => {
   const userId = isAuthenticated() && isAuthenticated().user.id;
+
+  console.log("USERID: ", userId);
 
   if (typeof window !== undefined) {
     localStorage.removeItem("jwt");
@@ -75,7 +78,7 @@ export const signout = (next) => {
       method: "GET",
     })
       .then((response) => {
-        console.log("Signing out");
+        console.log("Signout success");
         next();
       })
       .catch((err) => console.log(err));
