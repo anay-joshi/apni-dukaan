@@ -1,10 +1,9 @@
 import React from "react";
 
-const Imagehelper = ({ product }) => {
+const ImageHelper = ({ product }) => {
   const imageurl = product
     ? product.image
-    : `https://www.pexels.com/photo/man-wearing-yellow-crew-neck-t-shirt-and-blue-denim-jeans-1018911/`;
-
+    : `https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`;
   return (
     <div className="rounded border border-success p-2">
       <img
@@ -17,4 +16,4 @@ const Imagehelper = ({ product }) => {
   );
 };
 
-export default Imagehelper;
+export default ImageHelper;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Imagehelper from "./helper/imagehelper";
+import ImageHelper from "./helper/imagehelper";
 import { Redirect } from "react-router-dom";
 import { addItemToCart, removeItemFromCart } from "./helper/carthelper";
 import { isAuthenticated } from "../auth/helper";
@@ -7,14 +7,16 @@ import { isAuthenticated } from "../auth/helper";
 const Card = ({
   product,
   addtoCart = true,
-  removeFromCart = true,
+  removeFromCart = false,
   reload = undefined,
   setReload = (f) => f,
+  // function(f){return f}
 }) => {
   const [redirect, setRedirect] = useState(false);
-  const cartTitle = product ? product.name : "Default Title";
-  const cartDescription = product ? product.description : "Default Description";
-  const cartPrice = product ? product.price : "Default Price";
+
+  const cartTitle = product ? product.name : "A photo from pexels";
+  const cartDescription = product ? product.description : "Default description";
+  const cartPrice = product ? product.price : "Default";
 
   const addToCart = () => {
     if (isAuthenticated()) {
@@ -33,7 +35,7 @@ const Card = ({
 
   const showAddToCart = (addToCart) => {
     return (
-      addToCart && (
+      addtoCart && (
         <button
           onClick={addToCart}
           className="btn btn-block btn-outline-success mt-2 mb-2"
@@ -49,6 +51,7 @@ const Card = ({
       removeFromCart && (
         <button
           onClick={() => {
+            //TODO: handle this too
             removeItemFromCart(product.id);
             setReload(!reload);
 
@@ -67,7 +70,7 @@ const Card = ({
       <div className="card-header lead">{cartTitle}</div>
       <div className="card-body">
         {getAredirect(redirect)}
-        <Imagehelper product={product} />
+        <ImageHelper product={product} />
         <p className="lead bg-success font-weight-normal text-wrap">
           {cartDescription}
         </p>
