@@ -1,6 +1,10 @@
 # Apni-Dukaan
 
-Apni Dukan is E-commerce website that I am developing for a local clothing store.
+## Summary
+
+• Full Stack E-commerce web application with services including Email-Activation & Braintree’s Payment Gateway.
+• Incorporated RESTful layer of APIs using Django REST framework to minimize server latency. 
+• Consumed REST API (tested using Postman) to render out data in React front end.
 
 ## Motivation
 I developed a keen interest in making things work using python. So, I started learning django for web developmet. In my opinion, project-based learning is the best way to get started.
