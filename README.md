@@ -3,7 +3,9 @@
 ## Summary
 
 • Full Stack E-commerce web application with services including Email-Activation & Braintree’s Payment Gateway.
+<br>
 • Incorporated RESTful layer of APIs using Django REST framework to minimize server latency. 
+<br>
 • Consumed REST API (tested using Postman) to render out data in React front end.
 
 ## Motivation
